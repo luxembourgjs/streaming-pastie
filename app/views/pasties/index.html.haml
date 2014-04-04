@@ -1,0 +1,20 @@
+%h1 Listing pasties
+
+%table
+  %tr
+    %th Text
+    %th Image
+    %th
+    %th
+    %th
+
+  - @pasties.each do |pastie|
+    %tr
+      %td= pastie.text
+      %td= pastie.image
+      %td= link_to 'Show', pastie
+      %td= link_to 'Destroy', pastie, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Pastie', new_pastie_path

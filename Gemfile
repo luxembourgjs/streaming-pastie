@@ -6,8 +6,10 @@ ruby "2.1.1"
 gem 'rails', '4.0.4'
 
 gem 'mongoid', git: 'https://github.com/mongoid/mongoid.git'  
+gem 'moped'
 
 gem 'haml'
+gem 'haml-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -46,3 +48,7 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :development, :test do
+  gem 'pry'
+end

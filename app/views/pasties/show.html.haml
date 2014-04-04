@@ -1,0 +1,16 @@
+%p#notice= notice
+
+%p
+  %b Id:
+  = @pastie.id
+%p
+  %b Text:
+  = @pastie.text
+%p
+  %b Created at:
+  = "#{time_ago_in_words @pastie.created_at} ago"
+%p
+  %b Image:
+  = image_tag image_path(@pastie)
+
+= link_to 'Back', pasties_path

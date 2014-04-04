@@ -1,9 +1,13 @@
 StreamingPastie::Application.routes.draw do
+  resources :pasties, except: [:edit, :update], as: "pasties"
+
+  get "images/:id" => "pasties#image", as: "image"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'pasties#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
