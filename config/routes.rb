@@ -1,5 +1,5 @@
 StreamingPastie::Application.routes.draw do
-  resources :pasties, except: [:edit, :update], as: "pasties"
+  resources :pasties, except: [:edit], as: "pasties"
 
   get "images/:id" => "pasties#image", as: "image"
 

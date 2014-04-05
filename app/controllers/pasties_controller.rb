@@ -1,5 +1,5 @@
 class PastiesController < ApplicationController
-  before_action :set_pastie, only: [:show, :destroy, :image]
+  before_action :set_pastie, only: [:show, :destroy, :update, :image]
 
   def image
     return send_data "" unless @pastie.image
@@ -15,6 +15,20 @@ class PastiesController < ApplicationController
   # GET /pasties/1
   # GET /pasties/1.json
   def show
+  end
+
+  def update
+    @pastie.image = BSON::Binary.new(params["file"].tempfile.read) if params["file"]
+
+    respond_to do |format|
+      if @pastie.save!
+        format.html { redirect_to @pastie, notice: 'Pastie was successfully updated.' }
+        format.json { render action: 'show', status: :created, location: @pastie }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @pastie.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /pasties/new
