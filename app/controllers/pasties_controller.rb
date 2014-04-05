@@ -2,13 +2,14 @@ class PastiesController < ApplicationController
   before_action :set_pastie, only: [:show, :destroy, :image]
 
   def image
+    return send_data "" unless @pastie.image
     send_data @pastie.image.data
   end
 
   # GET /pasties
   # GET /pasties.json
   def index
-    @pasties = Pastie.all
+    @pasties = Pastie.all.sort {|one, other| other.created_at <=> one.created_at}
   end
 
   # GET /pasties/1
